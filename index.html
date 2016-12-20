@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>picture</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+	<!-- 页头 -->
+	<div id="search" class="search">
+	    <!-- 页头导航 -->
+	    <div class="s_tab">
+	        <a href="http://news.baidu.com/" onmousedown="setHeadUrl(this)" name="i_news">新闻</a>　
+	        <a href="https://www.baidu.com/" onmousedown="setHeadUrl(this)" name="i_webpage">网页</a>　
+	        <a href="http://tieba.baidu.com/" onmousedown="setHeadUrl(this)" name="i_tieba">贴吧</a>　
+	        <a href="http://zhidao.baidu.com/" onmousedown="setHeadUrl(this)" name="i_zhidao">知道</a>　
+	        <a href="http://music.baidu.com/" onmousedown="setHeadUrl(this)" name="i_mp3" class="eng">音乐</a>　
+	        <a href="http://image.baidu.com/" onmousedown="setHeadUrl(this)" name="image" class="active" >图片</a>　
+	        <a href="http://v.baidu.com/" onmousedown="setHeadUrl(this)" name="i_video">视频</a>　
+	        <a href="http://map.baidu.com/" onmousedown="setHeadUrl(this)" name="i_map">地图</a>　
+	        <a href="http://baike.baidu.com/" onmousedown="setHeadUrl(this)" name="i_baike">百科</a>　
+	        <a href="http://wenku.baidu.com/" onmousedown="setHeadUrl(this)" name="i_wenku">文库</a>
+	    </div>
+	    <!-- logo -->
+	    <a href="/" class="s_logo">
+	        <img src="img/imglogo-r.png" style="width:137px; height:46px;" alt="到 百度图片首页 来" title="返回 百度图片首页">
+	    </a>
+	    <!-- 搜索框 -->
+	    <div class="s_nav">
+	        <form action="/search/index" class="searchform" name="f1" onsubmit="return s_submit(this,true)">
+	            <input type="hidden" name="tn" value="baiduimage">
+	            <input type="hidden" name="ipn" value="r">
+	            <input name="ct" type="hidden" value="201326592">
+	            <input name="cl" type="hidden" value="2">
+	            <input name="lm" type="hidden" value="-1">
+	            <input name="st" type="hidden" value="-1">
+	            <input name="fm" type="hidden" value="result">
+	            <input name="fr" type="hidden" value="">
+	            <input name="sf" type="hidden" value="1">
+	            <input name="fmq" type="hidden" value="">
+	            <input name="pv" type="hidden" value="">
+	            <input name="ic" type="hidden" value="0">
+	            <input name="nc" type="hidden" value="1">
+	            <input name="z" type="hidden" value="">
+	            <input name="se" type="hidden" value="">
+	            <input name="showtab" type="hidden" value="0">
+	            <input name="fb" type="hidden" value="0">
+	            <input name="width" type="hidden" value="">
+	            <input name="height" type="hidden" value="">
+	            <input name="face" type="hidden" value="0">
+	            <input name="istype" type="hidden" value="2">
+	            <input name="ie" type="hidden" value="utf-8">
+	            <input name="ctd" type="hidden" value="">
+	            <span class="s_ipt_wr"><input id="kw" name="word" class="s_ipt" value="青云志" autocomplete="off"></span><span class="s_btn_wr"><input type="submit" class="s_btn" onmousedown="this.className='s_btn s_btn_h'" onmouseout="this.className='s_btn'" value="百度一下"></span>
+	        </form>
+	        <div id="stcontent" class="common-shitu" style="position: absolute; top: -2px; left: 0px;">
+	            <a class="sttb" hidefocus="true" id="sttb" href="javascript:void(0)" title="上传图片，搜索相关信息" style="visibility: visible;"> <img class="st_camera" src="img/camera_b659d28.png" width="21" height="20"> <img class="st_camera_on" src="img/camera_on_5d123b7.png" width="21" height="20">
+	            </a>
+	            <a class="sttb SugRecDisplay" title="点击查看热搜词" id="SugRecDisplay">
+	                <div id="SugRecShow">
+	                    <div class="tips">想再次查看，请点击这里</div>
+	                    <div class="arrow"></div>
+	                </div>
+	            </a>
+	        </div>
+	    </div>
+	    <!-- 筛选 -->
+	    <div id="imgfilter">
+	        <a id="imgfilter-btn" class="filter-close" href="javascript:;">
+	            <span class="imgfilter-text">图片筛选</span>
+	            <span class="imgfilter-arrow"></span>
+	        </a>
+	        <div id="filter-holder" style="display: none">
+	            <span class="holder-arrow"></span>
+	            <div id="top-filter-hoder">
+	                <div id="filter-container">
+	                    <div class="filter" id="filter">
+	                        <div id="typeFilter" class="subFilter filter-on">
+	                            <div>
+	                                <div class="filter-menu-item">全部类型</div><span class="menu-con-arrow"></span>
+	                                <ul class="filter-item-con">
+	                                    <li val="-1" data-text="全部类型" par="st" isd="1" class="list-first-item selected">全部类型</li>
+	                                    <li val="3" data-text="头像图片" par="s" isd="">头像图片</li>
+	                                    <li val="1" data-text="面部特写" par="face" isd="">面部特写</li>
+	                                    <li val="1" data-text="卡通画" par="st" isd="">卡通画</li>
+	                                    <li val="2" data-text="简笔画" par="st" isd="">简笔画</li>
+	                                    <li val="6" data-text="动态图片" par="lm" isd="">动态图片</li>
+	                                    <li val="7" data-text="静态图片" par="lm" isd="">静态图片</li>
+	                                </ul>
+	                            </div>
+	                        </div>
+	                        <div id="colorFilter" class="subFilter colorFilter">
+	                            <div>
+	                                <div class="filter-menu-item">全部颜色</div><span class="menu-con-arrow"></span>
+	                                <div class="filter-item-con">
+	                                    <ul>
+	                                        <li val="0" data-text="全部颜色" class="list-first-item" title="不做颜色筛选" isd="1">全部颜色</li>
+	                                    </ul>
+	                                    <div class="colorBox">
+	                                        <div val="1" data-color="#DE2020" data-text="红色" title="红色" class="colorBlock red" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#DE2020;border-color:#CB1C1C"></a>
+	                                        </div>
+	                                        <div val="256" data-color="#FE6C00" data-text="橙色" title="橙色" class="colorBlock orange" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#FE6C00;border-color:#E96300"></a>
+	                                        </div>
+	                                        <div val="2" data-color="#FEBF00" data-text="黄色" title="黄色" class="colorBlock yellow" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#FEBF00;border-color:#E9B000"></a>
+	                                        </div>
+	                                        <div val="4" data-color="#59A725" data-text="绿色" title="绿色" class="colorBlock green" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#59A725;border-color:#539B23"></a>
+	                                        </div>
+	                                        <div val="32" data-color="#892BCF" data-text="紫色" title="紫色" class="colorBlock purple" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#892BCF;border-color:#7A27B7"></a>
+	                                        </div>
+	                                        <div val="64" data-color="#D744BA" data-text="粉色" title="粉色" class="colorBlock pink" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#D744BA;border-color:#C63FAB"></a>
+	                                        </div>
+	                                        <div val="8" data-color="#06B7C8" data-text="青色" title="青色" class="colorBlock cyan" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#06B7C8;border-color:#07A6B7"></a>
+	                                        </div>
+	                                        <div val="16" data-color="#0065FE" data-text="蓝色" title="蓝色" class="colorBlock blue" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#0065FE;border-color:#005CEB"></a>
+	                                        </div>
+	                                        <div val="128" data-color="#733413" data-text="棕色" title="棕色" class="colorBlock gray" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#733413;border-color:#6B3012"></a>
+	                                        </div>
+	                                        <div val="1024" data-bg="" data-text="白色" title="白色" class="colorBlock white" isd=""><span class="picbox" style="display:block;"><a href="javascript:void(0);" hidefocus="true"></a></span></div>
+	                                        <div val="512" data-color="#000" data-text="黑色" title="黑色" class="colorBlock black" isd="">
+	                                            <a href="javascript:void(0);" hidefocus="true" style="background-color:#000;border-color:#000"></a>
+	                                        </div>
+	                                        <div val="2048" data-bg="#fff url(//img0.bdstatic.com/static/searchresult/img/lazy_img_d398a71.png) no-repeat -1px -319px" data-text="黑白" title="黑白" class="colorBlock bw" isd=""><span class="picbox" style="display:block;"><a href="javascript:void(0);" hidefocus="true"></a></span></div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div id="sizeFilter" class="subFilter sizeFilter">
+	                            <div>
+	                                <div class="filter-menu-item">全部尺寸</div><span class="menu-con-arrow"></span>
+	                                <ul class="filter-item-con">
+	                                    <li val="0" data-text="全部尺寸" par="z" isd="1" class="list-first-item selected">全部尺寸</li>
+	                                    <li val="9" data-text="特大尺寸" par="z" isd="">特大尺寸</li>
+	                                    <li val="3" data-text="大尺寸" par="z" isd="">大尺寸</li>
+	                                    <li val="2" data-text="中尺寸" par="z" isd="">中尺寸</li>
+	                                    <li val="1" data-text="小尺寸" par="z" isd="">小尺寸</li>
+	                                    <li val="null" data-text="电脑壁纸" style="text-decoration: none;" par="s" isd="" class="sub-item-parent wp-pc">电脑壁纸
+	                                        <ul class="sub-item-container">
+	                                            <li data-text="1920x1080" class="wp-item" w="1920" h="1080" par="s">1920x1080</li>
+	                                            <li data-text="1680x1050" class="wp-item" w="1680" h="1050" par="s">1680x1050</li>
+	                                            <li data-text="1440x900" class="wp-item" w="1440" h="900" par="s">1440x900</li>
+	                                            <li data-text="1366x768" class="wp-item" w="1366" h="768" par="s">1366x768</li>
+	                                            <li data-text="1280x1024" class="wp-item" w="1280" h="1024" par="s">1280x1024</li>
+	                                            <li data-text="1280x800" class="wp-item" w="1280" h="800" par="s">1280x800</li>
+	                                            <li data-text="1024x768" class="wp-item" w="1024" h="768" par="s">1024x768</li>
+	                                        </ul>
+	                                    </li>
+	                                    <li val="null" data-text="手机壁纸" style="text-decoration: none;" par="s" isd="" class="sub-item-parent wp-wise">手机壁纸
+	                                        <ul class="sub-item-container">
+	                                            <li data-text="2560x1440" class="wp-item" w="1440" h="2560" par="s">2560x1440</li>
+	                                            <li data-text="1920x1080" class="wp-item" w="1080" h="1920" par="s">1920x1080</li>
+	                                            <li data-text="1334x750" class="wp-item" w="750" h="1334" par="s">1334x750</li>
+	                                            <li data-text="1280x720" class="wp-item" w="720" h="1280" par="s">1280x720</li>
+	                                            <li data-text="1136x640" class="wp-item" w="640" h="1136" par="s">1136x640</li>
+	                                            <li data-text="960x640" class="wp-item" w="640" h="960" par="s">960x640</li>
+	                                            <li data-text="960x540" class="wp-item" w="540" h="960" par="s">960x540</li>
+	                                            <li data-text="854x480" class="wp-item" w="480" h="854" par="s">854x480</li>
+	                                            <li data-text="800x480" class="wp-item" w="480" h="800" par="s">800x480</li>
+	                                            <li data-text="480x320" class="wp-item" w="320" h="480" par="s">480x320</li>
+	                                        </ul>
+	                                    </li>
+	                                    <li val="null" data-text="自定义" style="text-decoration: none;" par="z" isd="" class="detail-size-filter">自定义
+	                                        <p class="info">宽：
+	                                            <input class="default" type="text" value="1680" name="swidth" id="swidth">
+	                                            <br>高：
+	                                            <input class="default" type="text" value="1050" name="sheight" id="sheight">
+	                                            <br>
+	                                            <button class="exact-size-submit" name="sizeSubmit" id="sizeSubmit">确定</button>
+	                                        </p>
+	                                    </li>
+	                                </ul>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- 相关搜素 -->
+	    <div id="topInfoBar" style="">
+	        <div id="topRS">
+		        <em class="pull-rs-title">相关搜索：</em>
+		        <a class="pull-rs" title="查看 双子星公主动漫" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:0, rq:'%E5%8F%8C%E5%AD%90%E6%98%9F%E5%85%AC%E4%B8%BB%E5%8A%A8%E6%BC%AB'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs1&amp;word=%E5%8F%8C%E5%AD%90%E6%98%9F%E5%85%AC%E4%B8%BB%E5%8A%A8%E6%BC%AB&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078867^00_1663X420">双子星公主动漫</a>
+		        <a class="pull-rs" title="查看 动漫汉娜" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:1, rq:'%E5%8A%A8%E6%BC%AB%E6%B1%89%E5%A8%9C'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs2&amp;word=%E5%8A%A8%E6%BC%AB%E6%B1%89%E5%A8%9C&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078867^00_1663X420">动漫汉娜</a>
+		        <a class="pull-rs" title="查看 日本动漫关于狐狸的" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:2, rq:'%E6%97%A5%E6%9C%AC%E5%8A%A8%E6%BC%AB%E5%85%B3%E4%BA%8E%E7%8B%90%E7%8B%B8%E7%9A%84'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs3&amp;word=%E6%97%A5%E6%9C%AC%E5%8A%A8%E6%BC%AB%E5%85%B3%E4%BA%8E%E7%8B%90%E7%8B%B8%E7%9A%84&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">日本动漫关于狐狸的</a>
+		        <a class="pull-rs" title="查看 女仆图片动漫" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:3, rq:'%E5%A5%B3%E4%BB%86%E5%9B%BE%E7%89%87%E5%8A%A8%E6%BC%AB'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs4&amp;word=%E5%A5%B3%E4%BB%86%E5%9B%BE%E7%89%87%E5%8A%A8%E6%BC%AB&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">女仆图片动漫</a>
+		        <a class="pull-rs" title="查看 动漫少女图片" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:4, rq:'%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3%E5%9B%BE%E7%89%87'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs5&amp;word=%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3%E5%9B%BE%E7%89%87&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫少女图片</a>
+		        <a class="pull-rs" title="查看 赵丽颖" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:5, rq:'%E8%B5%B5%E4%B8%BD%E9%A2%96'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs6&amp;word=%E8%B5%B5%E4%B8%BD%E9%A2%96&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">赵丽颖</a>
+		        <a class="pull-rs" title="查看 从零开始异世界生活" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:6, rq:'%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%BC%82%E4%B8%96%E7%95%8C%E7%94%9F%E6%B4%BB'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs7&amp;word=%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%BC%82%E4%B8%96%E7%95%8C%E7%94%9F%E6%B4%BB&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">从零开始异世界生活</a>
+		        <a class="pull-rs" title="查看 动漫 图片 少女" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:7, rq:'%E5%8A%A8%E6%BC%AB%20%E5%9B%BE%E7%89%87%20%E5%B0%91%E5%A5%B3'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs8&amp;word=%E5%8A%A8%E6%BC%AB%20%E5%9B%BE%E7%89%87%20%E5%B0%91%E5%A5%B3&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫 图片 少女</a>
+		        <a class="pull-rs" title="查看 动漫性感萌少女" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:8, rq:'%E5%8A%A8%E6%BC%AB%E6%80%A7%E6%84%9F%E8%90%8C%E5%B0%91%E5%A5%B3'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs9&amp;word=%E5%8A%A8%E6%BC%AB%E6%80%A7%E6%84%9F%E8%90%8C%E5%B0%91%E5%A5%B3&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫性感萌少女</a>
+		        <a class="pull-rs" title="查看 动漫大胸公主" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:9, rq:'%E5%8A%A8%E6%BC%AB%E5%A4%A7%E8%83%B8%E5%85%AC%E4%B8%BB'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs10&amp;word=%E5%8A%A8%E6%BC%AB%E5%A4%A7%E8%83%B8%E5%85%AC%E4%B8%BB&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫大胸公主</a>
+		        <a class="pull-rs" title="查看 黄山" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:10, rq:'%E9%BB%84%E5%B1%B1'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs11&amp;word=%E9%BB%84%E5%B1%B1&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">黄山</a>
+		        <a class="pull-rs" title="查看 动漫性感美女" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:11, rq:'%E5%8A%A8%E6%BC%AB%E6%80%A7%E6%84%9F%E7%BE%8E%E5%A5%B3'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs12&amp;word=%E5%8A%A8%E6%BC%AB%E6%80%A7%E6%84%9F%E7%BE%8E%E5%A5%B3&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫性感美女</a>
+		        <a class="pull-rs" title="查看 动漫丝袜美女" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:12, rq:'%E5%8A%A8%E6%BC%AB%E4%B8%9D%E8%A2%9C%E7%BE%8E%E5%A5%B3'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs13&amp;word=%E5%8A%A8%E6%BC%AB%E4%B8%9D%E8%A2%9C%E7%BE%8E%E5%A5%B3&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">动漫丝袜美女</a>
+		        <a class="pull-rs" title="查看 高清壁纸" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:13, rq:'%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs14&amp;word=%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">高清壁纸</a>
+		        <a class="pull-rs" title="查看 夏目友人帐" target="_self" onmousedown="p(event,10,{ps:'t',tp:'a',r:14, rq:'%E5%A4%8F%E7%9B%AE%E5%8F%8B%E4%BA%BA%E5%B8%90'})" href="/search/index?ct=201326592&amp;cl=2&amp;st=-1&amp;lm=-1&amp;nc=1&amp;ie=utf-8&amp;tn=baiduimage&amp;ipn=r&amp;rps=1&amp;pv=&amp;fm=rs15&amp;word=%E5%A4%8F%E7%9B%AE%E5%8F%8B%E4%BA%BA%E5%B8%90&amp;oriquery=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ofr=%E9%AB%98%E6%B8%85%E5%8A%A8%E6%BC%AB&amp;ctd=1475649078868^00_1663X420">夏目友人帐</a>
+	        </div>
+	    </div>
+		<!-- 右上角会员栏 -->
+		<div id="userInfo" class="display:none">
+			<a data-sargs="etc=bdindex" href="http://image.baidu.com/search/flip?tn=baiduimage&amp;ie=gbk&amp;word=%B8%DF%C7%E5%B6%AF%C2%FE&amp;ct=201326592&amp;v=flip">传统翻页版本</a>
+			<span class="nav-pipe">|</span>
+			<a data-sargs="etc=bdindex" class="last_left" href="https://www.baidu.com">百度首页</a>
+			<span class="nav-pipe">|</span>
+			<a data-sargs="etc=xc" href="http://image.baidu.com/albumlist/285212672 1384992735" target="_blank">我的图片</a>
+			<span class="nav-pipe">|</span>
+			<a data-sargs="etc=userinfo" target="_blank" id="username_info" href="http://i.baidu.com/?from=image"><strong style="">张三</strong></a>
+		</div>
+	</div>
+	<!-- 图片区域 -->
+	<div id="imgContainer">
+		<ul id="imgbox" class="imglist" >
+			<li><div><img src="img/1.jpeg" alt=""></div></li>
+			<li><div><img src="img/2.jpg" alt=""></div></li>
+			<li><div><img src="img/3.jpeg" alt=""></div></li>
+			<li><div><img src="img/17.jpg" alt=""></div></li>
+			<li><div><img src="img/4.jpg" alt=""></div></li>
+			<li><div><img src="img/5.jpg" alt=""></div></li>
+			<li><div><img src="img/6.jpeg" alt=""></div></li>
+			<li><div><img src="img/15.jpg" alt=""></div></li>
+			<li><div><img src="img/7.jpeg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/8.jpg" alt=""></div></li>
+			<li><div><img src="img/9.jpg" alt=""></div></li>
+			<li><div><img src="img/10.jpg" alt=""></div></li>
+			<li><div><img src="img/29.jpg" alt=""></div></li>
+			<li><div><img src="img/11.jpeg" alt=""></div></li>
+			<li><div><img src="img/12.jpeg" alt=""></div></li>
+			<li><div><img src="img/13.jpg" alt=""></div></li>
+			<li><div><img src="img/14.jpg" alt=""></div></li>
+			<li><div><img src="img/15.jpg" alt=""></div></li>
+			<li><div><img src="img/29.jpg" alt=""></div></li>
+			<li><div><img src="img/16.jpeg" alt=""></div></li>
+			<li><div><img src="img/24.jpg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/26.jpg" alt=""></div></li>
+			<li><div><img src="img/27.jpeg" alt=""></div></li>
+			<li><div><img src="img/15.jpg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/28.jpeg" alt=""></div></li>
+			<li><div><img src="img/29.jpg" alt=""></div></li>
+			<li><div><img src="img/30.jpg" alt=""></div></li>
+			<li><div><img src="img/17.jpg" alt=""></div></li>
+			<li><div><img src="img/18.jpeg" alt=""></div></li>
+			<li><div><img src="img/1.jpeg" alt=""></div></li>
+			<li><div><img src="img/2.jpg" alt=""></div></li>
+			<li><div><img src="img/3.jpeg" alt=""></div></li>
+			<li><div><img src="img/4.jpg" alt=""></div></li>
+			<li><div><img src="img/5.jpg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/6.jpeg" alt=""></div></li>
+			<li><div><img src="img/7.jpeg" alt=""></div></li>
+			<li><div><img src="img/8.jpg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/9.jpg" alt=""></div></li>
+			<li><div><img src="img/10.jpg" alt=""></div></li>
+			<li><div><img src="img/11.jpeg" alt=""></div></li>
+			<li><div><img src="img/12.jpeg" alt=""></div></li>
+			<li><div><img src="img/13.jpg" alt=""></div></li>
+			<li><div><img src="img/14.jpg" alt=""></div></li>
+			<li><div><img src="img/19.jpeg" alt=""></div></li>
+			<li><div><img src="img/15.jpg" alt=""></div></li>
+			<li><div><img src="img/20.jpg" alt=""></div></li>
+			<li><div><img src="img/21.jpg" alt=""></div></li>
+			<li><div><img src="img/22.jpeg" alt=""></div></li>
+			<li><div><img src="img/23.jpg" alt=""></div></li>
+			<li><div><img src="img/24.jpg" alt=""></div></li>
+			<li><div><img src="img/25.jpeg" alt=""></div></li>
+			<li><div><img src="img/26.jpg" alt=""></div></li>
+			<li><div><img src="img/27.jpeg" alt=""></div></li>
+			<li><div><img src="img/28.jpeg" alt=""></div></li>
+			<li><div><img src="img/29.jpg" alt=""></div></li>
+			<li><div><img src="img/30.jpg" alt=""></div></li>
+			<li><div><img src="img/13.jpg" alt=""></div></li>
+			<li><div><img src="img/14.jpg" alt=""></div></li>
+			<li><div><img src="img/19.jpeg" alt=""></div></li>
+			<li><div><img src="img/20.jpg" alt=""></div></li>
+			<li><div><img src="img/16.jpeg" alt=""></div></li>
+			<li><div><img src="img/21.jpg" alt=""></div></li>
+			<li><div><img src="img/22.jpeg" alt=""></div></li>
+			<li><div><img src="img/23.jpg" alt=""></div></li>
+			<li><div><img src="img/24.jpg" alt=""></div></li>
+		</ul>
+	</div>
+</body>
+</html>
